@@ -1,104 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Commerce Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Website</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f9fafb; color: #333; }
-    header { background: #4f46e5; color: white; padding: 16px; text-align: center; }
-    nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: bold; }
-    .container { max-width: 1000px; margin: auto; padding: 20px; }
-    .hidden { display: none; }
-    .card { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 16px; margin-bottom: 16px; }
-    .btn { display: inline-block; padding: 8px 12px; background: #4f46e5; color: white; border-radius: 4px; text-decoration: none; }
-    .btn:hover { background: #3730a3; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background: #f3f4f6; }
+    body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f7f8fa; color:#333;}
+    header {background:#4f46e5; color:#fff; padding:15px 30px; display:flex; justify-content:space-between; align-items:center;}
+    header h1 {margin:0; font-size:22px;}
+    nav a {color:white; margin-left:15px; text-decoration:none; font-weight:bold;}
+    .container {max-width:1200px; margin:auto; padding:20px;}
+    .page {display:none;}
+    .active {display:block;}
+    .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
+    .card {background:#fff; border-radius:8px; padding:15px; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+    .card h3 {margin-top:0;}
+    button, .btn {background:#4f46e5; color:#fff; border:none; padding:8px 14px; border-radius:5px; cursor:pointer; text-decoration:none; font-size:14px;}
+    button:hover, .btn:hover {background:#3730a3;}
+    table {width:100%; border-collapse:collapse;}
+    th, td {padding:10px; border-bottom:1px solid #ddd; text-align:left;}
+    footer {background:#111827; color:#aaa; text-align:center; padding:15px; margin-top:20px;}
   </style>
 </head>
 <body>
   <header>
-    <h1>My E-Commerce Store</h1>
+    <h1>My E-Commerce</h1>
     <nav>
       <a href="#" onclick="showPage('shop')">Shop</a>
-      <a href="#" onclick="showPage('product')">Product Detail</a>
-      <a href="#" onclick="showPage('checkout')">Checkout</a>
       <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+      <a href="#" onclick="showPage('checkout')">Checkout</a>
     </nav>
   </header>
 
   <div class="container">
     <!-- Shop Page -->
-    <section id="shop" class="page">
+    <section id="shop" class="page active">
       <h2>Shop</h2>
-      <div class="card">
-        <h3>IoT Sensor A1</h3>
-        <p>Wireless environmental sensor with temp & humidity.</p>
-        <p><strong>$49.99</strong></p>
-        <a href="#" class="btn" onclick="showPage('product')">View</a>
-      </div>
-      <div class="card">
-        <h3>Smart Plug P9</h3>
-        <p>Remote controllable smart plug with energy monitoring.</p>
-        <p><strong>$19.90</strong></p>
-        <a href="#" class="btn" onclick="showPage('product')">View</a>
+      <div class="grid">
+        <div class="card">
+          <h3>Smart Sensor</h3>
+          <p>Wireless environmental sensor.</p>
+          <p><strong>$49.99</strong></p>
+          <a href="#" class="btn" onclick="showPage('product')">View Details</a>
+        </div>
+        <div class="card">
+          <h3>Smart Plug</h3>
+          <p>Remote controllable plug with monitoring.</p>
+          <p><strong>$19.99</strong></p>
+          <a href="#" class="btn" onclick="showPage('product')">View Details</a>
+        </div>
       </div>
     </section>
 
     <!-- Product Detail Page -->
-    <section id="product" class="page hidden">
+    <section id="product" class="page">
       <h2>Product Detail</h2>
       <div class="card">
-        <h3>IoT Sensor A1</h3>
-        <p>Firmware: v1.3.2 | Stock: 34</p>
-        <p>Wireless environmental sensor with temperature and humidity monitoring.</p>
-        <p><strong>$49.99</strong></p>
-        <a href="#" class="btn" onclick="showPage('checkout')">Buy Now</a>
+        <h3>Smart Sensor</h3>
+        <p><strong>Price:</strong> $49.99</p>
+        <p><strong>Description:</strong> High-accuracy IoT environmental sensor with real-time monitoring.</p>
+        <button onclick="showPage('checkout')">Buy Now</button>
+        <button onclick="alert('Added to Cart')">Add to Cart</button>
       </div>
     </section>
 
     <!-- Checkout Page -->
-    <section id="checkout" class="page hidden">
+    <section id="checkout" class="page">
       <h2>Checkout</h2>
-      <form class="card">
-        <label>Name<br><input type="text" required></label><br><br>
-        <label>Email<br><input type="email" required></label><br><br>
-        <p>Order Summary: IoT Sensor A1 - $49.99</p>
-        <button type="submit" class="btn">Place Order</button>
-      </form>
+      <div class="card">
+        <form onsubmit="alert('Order Placed!'); return false;">
+          <label>Name:</label><br>
+          <input type="text" required style="width:100%; padding:8px; margin:5px 0;"><br>
+          <label>Email:</label><br>
+          <input type="email" required style="width:100%; padding:8px; margin:5px 0;"><br>
+          <label>Address:</label><br>
+          <textarea required style="width:100%; padding:8px; margin:5px 0;"></textarea><br>
+          <button type="submit">Place Order</button>
+        </form>
+      </div>
     </section>
 
     <!-- Dashboard Page -->
-    <section id="dashboard" class="page hidden">
-      <h2>Admin Dashboard</h2>
-      <div class="card">
-        <h3>KPIs</h3>
-        <p>Total Revenue: $159.68</p>
-        <p>Total Orders: 3</p>
-        <p>Low Stock Products: 1</p>
+    <section id="dashboard" class="page">
+      <h2>Dashboard</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Total Revenue</h3>
+          <p>$2,430</p>
+        </div>
+        <div class="card">
+          <h3>Total Orders</h3>
+          <p>56</p>
+        </div>
+        <div class="card">
+          <h3>Low Stock</h3>
+          <p>2 products</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Recent Orders</h3>
-        <table>
-          <thead><tr><th>Order ID</th><th>Date</th><th>Total</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr><td>ORD-1001</td><td>2025-08-01</td><td>$99.98</td><td>Shipped</td></tr>
-            <tr><td>ORD-1002</td><td>2025-08-12</td><td>$59.70</td><td>Processing</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <h3 style="margin-top:20px;">Recent Orders</h3>
+      <table>
+        <thead>
+          <tr><th>Order ID</th><th>Date</th><th>Total</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ORD-101</td><td>2025-09-01</td><td>$99.98</td><td>Shipped</td></tr>
+          <tr><td>ORD-102</td><td>2025-09-03</td><td>$59.97</td><td>Processing</td></tr>
+        </tbody>
+      </table>
     </section>
   </div>
 
+  <footer>
+    <p>© <span id="year"></span> My E-Commerce Website</p>
+  </footer>
+
   <script>
-    function showPage(pageId) {
-      document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-      document.getElementById(pageId).classList.remove('hidden');
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
-    // Show shop by default
-    showPage('shop');
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
